@@ -1,0 +1,24 @@
+﻿@using WebApplication1.Models
+@model List<Subject>
+@{
+    ViewBag.Title = "Zobrazení předmětů";
+
+}
+
+<h2>Zobrazení všech předmětů</h2>
+<table class="table">
+    <tr><th>Zkratka</th><th>Katedra</th><th>Editace</th></tr>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Abbrev</td>
+            <td>@s.Department</td>
+            <td><a href="@Url.Action("Detail", "Subject")/@s.Id"><span class="glyphicon glyphicon-list-alt"></span></a><a href="@Url.Action("Edit", "Subject")/@s.Id"><span class="glyphicon glyphicon-pencil"></span></a> <a href="@Url.Action("Delete", "Subject")/@s.Id"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Add Subject", "Add")
+</div>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+
+<p><b>Jméno:</b> @Model.Name</p>
+<p><b>Příjmení:</b> @Model.Surname</p>
+<p><b>Ročník:</b> @Model.Rocnik</p>
+
+<div>
+    @Html.ActionLink("Back to list", "All")
+</div>
+

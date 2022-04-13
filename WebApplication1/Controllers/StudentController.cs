@@ -46,5 +46,50 @@ namespace WebApplication1.Controllers
                 return new HttpNotFoundResult("Student not found");
             }
         }
+
+        [HttpGet]
+        public ActionResult Add()
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(Student s)
+        {
+            if (s != null)
+            {
+                Ctx.Students.Add(s);
+                Ctx.SaveChanges();
+                return RedirectToAction("All");
+            }
+            else
+            {
+                return new HttpNotFoundResult("Student is invalid");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Student deleted = Ctx.Students.FirstOrDefault(s => s.Id == id);
+            Ctx.Students.Remove(deleted);
+            Ctx.SaveChanges();
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            Student student = Ctx.Students.FirstOrDefault(s => s.Id == id);
+            
+            if (student != null)
+            {
+                return View(student);
+            }
+            else
+            {
+                return new HttpNotFoundResult("Student not found");
+            }
+        }
     }
 }
